@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyFlow — Умное расписание</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <a class="brand" href="#">
+        <span class="brand-mark">S</span>
+
+        <span>
+            Study<span>Flow</span>
+        </span>
+    </a>
+
+    <div class="top-actions">
+
+        <button id="themeBtn" class="icon-btn">
+            ☾
+        </button>
+
+        <button id="clearBtn" class="ghost-btn">
+            Очистить
+        </button>
+
+        <button id="openModalBtn" class="primary-btn">
+            ＋ Добавить урок
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-copy">
+
+            <div class="eyebrow">
+                SMART SCHOOL PLANNER
+            </div>
+
+            <h1>
+                Расписание,<br>
+                <span>которое понятно.</span>
+            </h1>
+
+            <p>
+                6 дней, 2 смены и готовое школьное время.
+                Просто выбери урок — StudyFlow всё рассчитает сам.
+            </p>
+
+            <button id="heroAddBtn" class="hero-btn">
+                Создать расписание
+                <span>→</span>
+            </button>
+
+        </div>
+
+
+        <div class="hero-panel">
+
+            <div class="panel-top">
+
+                <span>
+                    ЭТА НЕДЕЛЯ
+                </span>
+
+                <strong id="heroDate">
+                    2026
+                </strong>
+
+            </div>
+
+
+            <div
+                class="big-number"
+                id="heroLessons"
+            >
+                0
+            </div>
+
+
+            <div class="panel-label">
+                занятий запланировано
+            </div>
+
+
+            <div class="panel-line"></div>
+
+
+            <div class="panel-stats">
+
+                <div>
+
+                    <b id="heroDays">
+                        0
+                    </b>
+
+                    <span>
+                        учебных дней
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <b id="nextLesson">
+                        —
+                    </b>
+
+                    <span>
+                        ближайший урок
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SCHEDULE -->
+
+    <section
+        class="schedule-section"
+        id="schedule"
+    >
+
+        <div class="section-head">
+
+            <div>
+
+                <div class="eyebrow">
+                    YOUR WEEK
+                </div>
+
+                <h2>
+                    Расписание
+                </h2>
+
+                <p id="weekRange">
+                    —
+                </p>
+
+            </div>
+
+
+            <div class="week-nav">
+
+                <button
+                    id="prevWeek"
+                    class="week-btn"
+                >
+                    ←
+                </button>
+
+
+                <div>
+
+                    <strong id="weekTitle">
+                        Текущая неделя
+                    </strong>
+
+                    <span>
+                        Пн — Сб
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="nextWeek"
+                    class="week-btn"
+                >
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="shift-note">
+
+            <div>
+
+                <span class="dot first"></span>
+
+                <b>
+                    1-я смена
+                </b>
+
+                <span>
+                    08:00–13:05
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot second"></span>
+
+                <b>
+                    2-я смена
+                </b>
+
+                <span>
+                    13:10–18:15
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="scheduleGrid"
+            class="schedule-grid"
+        ></div>
+
+    </section>
+
+
+    <!-- INFO -->
+
+    <section class="info-section">
+
+        <div class="info-card">
+
+            <span class="info-icon">
+                ⏱
+            </span>
+
+            <div>
+
+                <b>
+                    45 минут
+                </b>
+
+                <small>
+                    каждый урок
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="info-icon">
+                ☀
+            </span>
+
+            <div>
+
+                <b>
+                    2 смены
+                </b>
+
+                <small>
+                    время автоматически
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="info-icon">
+                📅
+            </span>
+
+            <div>
+
+                <b>
+                    6 дней
+                </b>
+
+                <small>
+                    Пн — Сб
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="info-icon">
+                💾
+            </span>
+
+            <div>
+
+                <b>
+                    Автосохранение
+                </b>
+
+                <small>
+                    данные остаются в браузере
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div
+    id="modal"
+    class="modal hidden"
+>
+
+    <div class="modal-overlay"></div>
+
+
+    <div class="modal-window">
+
+        <button
+            id="closeModalBtn"
+            class="close-btn"
+        >
+            ×
+        </button>
+
+
+        <div class="eyebrow">
+            NEW LESSON
+        </div>
+
+
+        <h2>
+            Добавить урок
+        </h2>
+
+
+        <p class="modal-subtitle">
+            Выбери день, смену и номер урока.
+            Время появится автоматически.
+        </p>
+
+
+        <form id="lessonForm">
+
+
+            <label>
+                Предмет
+
+                <input
+                    id="subject"
+                    type="text"
+                    placeholder="Например: Математика"
+                    required
+                >
+
+            </label>
+
+
+            <div class="form-grid">
+
+                <label>
+                    День
+
+                    <select id="lessonDay">
+
+                        <option value="0">
+                            Понедельник
+                        </option>
+
+                        <option value="1">
+                            Вторник
+                        </option>
+
+                        <option value="2">
+                            Среда
+                        </option>
+
+                        <option value="3">
+                            Четверг
+                        </option>
+
+                        <option value="4">
+                            Пятница
+                        </option>
+
+                        <option value="5">
+                            Суббота
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+                <label>
+                    Смена
+
+                    <select id="lessonShift">
+
+                        <option value="first">
+                            1-я смена
+                        </option>
+
+                        <option value="second">
+                            2-я смена
+                        </option>
+
+                    </select>
+
+                </label>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <label>
+                    Номер урока
+
+                    <select id="lessonNumber">
+
+                        <option value="0">
+                            1 урок
+                        </option>
+
+                        <option value="1">
+                            2 урок
+                        </option>
+
+                        <option value="2">
+                            3 урок
+                        </option>
+
+                        <option value="3">
+                            4 урок
+                        </option>
+
+                        <option value="4">
+                            5 урок
+                        </option>
+
+                        <option value="5">
+                            6 урок
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+                <div class="time-preview">
+
+                    <span>
+                        Время
+                    </span>
+
+                    <strong id="timePreview">
+                        08:00 — 08:45
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <label>
+                    Учитель
+
+                    <input
+                        id="teacher"
+                        type="text"
+                        placeholder="Например: Ахмедов А."
+                    >
+
+                </label>
+
+
+                <label>
+                    Кабинет
+
+                    <input
+                        id="room"
+                        type="text"
+                        placeholder="Например: 204"
+                    >
+
+                </label>
+
+            </div>
+
+
+            <label>
+                Цвет
+
+                <div class="color-picker">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="lessonColor"
+                            value="blue"
+                            checked
+                        >
+
+                        <span class="color blue"></span>
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="lessonColor"
+                            value="purple"
+                        >
+
+                        <span class="color purple"></span>
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="lessonColor"
+                            value="green"
+                        >
+
+                        <span class="color green"></span>
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="lessonColor"
+                            value="orange"
+                        >
+
+                        <span class="color orange"></span>
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="lessonColor"
+                            value="pink"
+                        >
+
+                        <span class="color pink"></span>
+                    </label>
+
+                </div>
+
+            </label>
+
+
+            <button
+                class="primary-btn full"
+                type="submit"
+            >
+                Добавить в расписание →
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
